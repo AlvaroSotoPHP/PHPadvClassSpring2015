@@ -9,25 +9,25 @@
         <?php
         // put your code here
         
-        $phonetype = filter_input(INPUT_POST, 'phonetype');
+        $emailtype = filter_input(INPUT_POST, 'emailtype');
         
         if (!empty($_POST))
         {
-            if (!empty($phonetype))
+            if (!empty($emailtype))
             {
-                echo 'Phone type is valid.';
+                echo 'Email type is valid.';
             }
             else
             {
-                echo 'Phone type is empty.';
+                echo 'Email type is empty.';
             }
         }
         ?>
         
-        <h3>Add Phone Type</h3>
+        <h3>Add Email Type</h3>
         <form action="#" method="post">
-            <label>Phone Type:</label>
-            <input type="text" name="phonetype" value="<?php echo $phonetype; ?>" />
+            <label>Email Type:</label>
+            <input type="text" name="phonetype" value="<?php echo $emailtype; ?>" />
             <input type="submit" value="Submit" />
         </form>
     </body>
