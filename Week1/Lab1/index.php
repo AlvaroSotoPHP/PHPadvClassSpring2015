@@ -85,7 +85,7 @@
             //Results are return as a assoc array
             foreach($results as $value)
             {
-                echo '<p><ol>', $value['emailtype'], '</ol></p>';
+                echo '<p><li>', $value['emailtype'], '</li></p>';
             }
         }
         else
