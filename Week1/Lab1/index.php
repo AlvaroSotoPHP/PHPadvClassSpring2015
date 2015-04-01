@@ -20,14 +20,14 @@
         $errors = array();
         
         //Setting up the config for the database
-        $dbConfig = array(
+        /*$dbConfig = array(
             "DB_DNS"=>'mysql:host=localhost;port=3306;dbname=PHPadvClassSpring2015',
             "DB_USER"=>'root',
             "DB_PASSWORD"=>''
             );
         
         $pdo = new DB($dbConfig);
-        $db = $pdo->getDB();
+        $db = $pdo->getDB();*/
         
         //Using classes
         if ($util->isPostRequest())
@@ -50,14 +50,16 @@
         else
         {
             //if no errors, save to the database
-            $stmt = $db->prepare("INSERT INTO emailtype SET emailtype = :emailtype");
+            $emailClass = new emailTypeDB();
+            echo $emailClass->addEmail($emailtype);
+            /*$stmt = $db->prepare("INSERT INTO emailtype SET emailtype = :emailtype");
             
             $values = array(":emailtype"=>$emailtype);
             
             if ($stmt->execute($values) && $stmt->rowCount() > 0)
             {
                 echo 'Email Type Added';
-            }
+            }*/
         }
         
     }
@@ -75,23 +77,8 @@
         <?php
         
         //Display values from database
-        $stmt = $db->prepare("SELECT * FROM emailtype");
-        
-        if ($stmt->execute() && $stmt->rowCount() > 0)
-        {
-            //fetchAll gets al the values and fetch gets one row
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            
-            //Results are return as a assoc array
-            foreach($results as $value)
-            {
-                echo '<p><li>', $value['emailtype'], '</li></p>';
-            }
-        }
-        else
-        {
-            echo '<p>No Data</p>';
-        }
+        $emailClass = new emailTypeDB();
+        $newresult = $emailClass->display();
         
         ?>
         
