@@ -45,6 +45,7 @@
             {
                 echo '<p>',$value,'</p>';
             }
+            
         }
         else
         {
@@ -66,8 +67,33 @@
         <h3>Add Email Type</h3>
         <form action="#" method="post">
             <label>Email Type:</label>
-            <input type="text" name="phonetype" value="<?php echo $emailtype; ?>" />
+            <input type="text" name="emailtype" value="<?php echo $emailtype; ?>" />
             <input type="submit" value="Submit" />
         </form>
+        
+        
+        <?php
+        
+        //Display values from database
+        $stmt = $db->prepare("SELECT * FROM emailtype");
+        
+        if ($stmt->execute() && $stmt->rowCount() > 0)
+        {
+            //fetchAll gets al the values and fetch gets one row
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            //Results are return as a assoc array
+            foreach($results as $value)
+            {
+                echo '<p><ol>', $value['emailtype'], '</ol></p>';
+            }
+        }
+        else
+        {
+            echo '<p>No Data</p>';
+        }
+        
+        ?>
+        
     </body>
 </html>
