@@ -1,96 +1,109 @@
-<?php include './bootstrap.php'; ?>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-        // put your code here
-        
-        /*
-         * Normally with relational MySQL your dealing with multipule databases that have a connection with another table.
-         * 
-         * In this example we have a phone table that has a phonetypeid that is linked to the phone type table.
-         * We can use the phonetypeid from the phone table to get a match from the phonetype table and get the phonetype.
-         * 
-         * phone->phonetypeid belongs to phonetype->phonetypeid
-         * 
-         * 
-         * if you need a review about joins this article is good
-         * 
-         * http://www.sitepoint.com/understanding-sql-joins-mysql-database/
-         * 
-         */
-        
+to more classes with individually higher cohesion. On the other
+hand, a high value of cohesion (a low lack of cohesion) implies that the
+class is well designed. A cohesive class will tend to provide a high degree
+of encapsulation, whereas a lack of cohesion decreases encapsulation and
+increases complexity.
+<p/>
+Another form of cohesion that is useful for Java programs is cohesion
+between nested and enclosing classes. A nested class that has very low
+cohesion with its enclosing class would probably better designed as a peer
+class rather than a nested class.
+<p/>
+LCOM is defined for classes. Operationally, LCOM takes each pair of
+methods in the class and determines the set of fields they each access. If
+they have disjoint sets of field accesses increase the count P by one. If they
+share at least one field access then increase Q by one. After considering
+each pair of methods,
+LCOM = (P > Q) ? (P - Q) : 0
+<p/>
+Indirect access to fields via local methods can be considered by setting a
+metric configuration parameter.
 
-        $dbConfig = array(
-                "DB_DNS"=>'mysql:host=localhost;port=3306;dbname=PHPadvClassSpring2015',
-                "DB_USER"=>'root',
-                "DB_PASSWORD"=>''
-                );
+<a name="NOC"/>
+<h3>Number Of Classes - NOC</h3>
 
-        $pdo = new DB($dbConfig);
-        $db = $pdo->getDB();
-        
-        $stmt = $db->prepare("SELECT phoneid from phone where phone = :phone");  
-        $values = array(":phone"=>'555-444-3333');
-        
-        if ( $stmt->execute($values) && $stmt->rowCount() > 0 ) {
-            echo '<p>Phone Already added</p>';
-            
-            $result = $stmt->fetch(PDO::FETCH_ASSOC);
-             
-            // lets update the phone
-            $stmt = $db->prepare("UPDATE phone SET lastupdated = now() where phoneid = :phoneid");  
-            $values = array(":phoneid"=>$result['phoneid']);
-            if ( $stmt->execute($values) && $stmt->rowCount() > 0 ) {
-                echo '<p>Phone Updated</p>';
-            }
-            
-            
-        } else {
-        
-            // lets add a phone
-            // now() = MySql timestamp function
-            $stmt = $db->prepare("INSERT INTO phone SET phone = :phone, phonetypeid = :phonetypeid, logged = now(), lastupdated = now()");  
-            $values = array(":phone"=>'555-444-3333',":phonetypeid"=>'2');
-            if ( $stmt->execute($values) && $stmt->rowCount() > 0 ) {
-                echo '<p>Phone Added</p>';
-            } 
-
-        }
-        
-        
-        
-        
-        /*
-         * Selects see the data
-         */
-        $stmt = $db->prepare("SELECT phone.phone, phonetype.phonetype, phone.logged, phone.lastupdated FROM phone LEFT JOIN phonetype on phone.phonetypeid = phonetype.phonetypeid");  
-                
-        if ( $stmt->execute() && $stmt->rowCount() > 0 ) {
-        
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-           
-            echo '<table>';
-            foreach ($results as $value) {
-                echo '<tr>';
-                echo '<td>', $value['phone'], '</td>';
-                echo '<td>', $value['phonetype'], '</td>';
-                // we use the MySQL timestamp to format it in PHP
-                echo '<td>', date("F j, Y g:i(s) a", strtotime($value['logged']))  , '</td>';
-                echo '<td>', date("F j, Y g:i(s) a", strtotime($value['lastupdated'])) , '</td>';
-                echo '</td>';
-            }
-             echo '</table>';
-        } else {
-            echo '<p>No Data</p>';
-        }
-        
-        
-        
-        ?>
-    </body>
+The overall size of the system can be estimated by calculating the number
+of classes it contains. A large system with more classes is more complex
+than a smaller one because the number of potential interactions between
+objects is higher. This reduces the comprehensibility of the system which
+in turn makes it harder to test, debug and maintain.
+<p/>
+If the number of classes in the system can be projected during the initial
+design phase of the project it can serve as a base for estimating the total
+effort and cost of developing, debugging and maintaining the system.
+<p/>
+The NOC metric can also usefully be applied at the package and class level
+as well as the total system.
+<p/>
+NOCL is defined for class and interfaces. It counts the number of classes or
+interfaces that are declared. This is usually 1, but nested class declarations
+will increase this number.
+</body>
 </html>
+</xsl:template>
+
+<!-- this is the stylesheet css to use for nearly everything -->
+<xsl:template name="stylesheet.css">
+    .bannercell {
+      border: 0px;
+      padding: 0px;
+    }
+    body {
+      margin-left: 10;
+      margin-right: 10;
+      font:normal 80% arial,helvetica,sanserif;
+      background-color:#FFFFFF;
+      color:#000000;
+    }
+    .a td {
+      background: #efefef;
+    }
+    .b td {
+      background: #fff;
+    }
+    th, td {
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      font-weight:bold;
+      background: #ccc;
+      color: black;
+    }
+    table, th, td {
+      font-size:100%;
+      border: none
+    }
+    table.log tr td, tr th {
+
+    }
+    h2 {
+      font-weight:bold;
+      font-size:140%;
+      margin-bottom: 5;
+    }
+    h3 {
+      font-size:100%;
+      font-weight:bold;
+      background: #525D76;
+      color: white;
+      text-decoration: none;
+      padding: 5px;
+      margin-right: 2px;
+      margin-left: 2px;
+      margin-bottom: 0;
+    }
+    .Error {
+      font-weight:bold; color:red;
+    }
+
+</xsl:template>
+
+<!-- print the metrics of the class -->
+<xsl:template match="class" mode="class.details">
+  <!--xsl:variable name="package.name" select="(ancestor::package)[last()]/@name"/-->
+  <xsl:variable name="package.name" select="@package"/>
+  <HTML>
+    <HEAD>
+      <xsl:call-template name="create.stylesheet.link">
+        <xsl:with-param name="package.name" s

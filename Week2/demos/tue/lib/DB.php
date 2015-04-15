@@ -1,63 +1,52 @@
-<?php
+print.metrics"/>
+      </table>
 
-/**
- * DB is the general class to connection to our database
- *
- * @author GForti
- */
+      <xsl:call-template name="pageFooter"/>
+    </BODY>
+  </HTML>
+</xsl:template>
 
 
-class DB {
-    
-    protected $db = null;
-    private $dbConfig = array();
-   
-     
-    /**
-    * The contructor requires.
-    *    
-    * @param {Array} [$dbConfig] - Database config
-    */    
-    public function __construct($dbConfig) {
-        $this->setDbConfig($dbConfig);      
-    }
-    
-    private function getDbConfig() {
-        return $this->dbConfig;
-    }
+<!-- list of classes in a package -->
+<xsl:template match="package" mode="classes.list">
+  <HTML>
+    <HEAD>
+      <xsl:call-template name="create.stylesheet.link">
+        <xsl:with-param name="package.name" select="@name"/>
+      </xsl:call-template>
+    </HEAD>
+    <BODY>
+      <table width="100%">
+        <tr>
+          <td nowrap="nowrap">
+            <H2><a href="package-summary.html" target="classFrame"><xsl:value-of select="@name"/></a></H2>
+          </td>
+        </tr>
+      </table>
 
-    private function setDbConfig($dbConfig) {
-        $this->dbConfig = $dbConfig;
-    }
-    
-    /**
-    * A method to get our database connection.
-    *    
-    * @return PDO
-    */           
-    public function getDB() { 
-        if ( null != $this->db ) {
-            return $this->db;
-        }
-        try {
-            $config = $this->getDbConfig();
-            $this->db = new PDO($config['DB_DNS'], $config['DB_USER'], $config['DB_PASSWORD']);
-            $this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
-        } catch (Exception $ex) {
-          
-           $this->closeDB();
-        }
-        return $this->db;        
-    }
-    
-    /**
-    * A method to close our database connection.
-    *    
-    * @return void
-    */  
-     public function closeDB() {        
-        $this->db = null;        
-    }
-    
-    
-}
+      <H2>Classes</H2>
+      <TABLE WIDTH="100%">
+        <!-- xalan-nodeset:nodeset for Xalan 1.2.2 -->
+            <xsl:for-each select="$doctree/classes/class[@package = current()/@name]">
+                <xsl:sort select="@name"/>
+          <tr>
+            <td nowrap="nowrap">
+              <a href="{@name}.html" target="classFrame"><xsl:value-of select="@name"/></a>
+            </td>
+          </tr>
+            </xsl:for-each>
+      </TABLE>
+    </BODY>
+  </HTML>
+</xsl:template>
+
+
+<!--
+  Creates an all-classes.html file that contains a link to all package-summary.html
+  on each class.
+-->
+<xsl:template match="metrics" mode="all.classes">
+  <html>
+    <head>
+      <xsl:call-template name="create.stylesheet.link">
+        <xsl:with-param name=

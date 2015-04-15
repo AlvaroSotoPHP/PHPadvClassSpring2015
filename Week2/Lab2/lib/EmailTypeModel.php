@@ -5,6 +5,7 @@ class EmailTypeModel implements IModel
     
     private $emailtype;
     private $active;
+    private $emailtypeid;
     
     
     function getEmailType()
@@ -17,6 +18,11 @@ class EmailTypeModel implements IModel
         return $this->active;
     }
     
+    function getEmailTypeId()
+    {
+        return $this->emailtypeid;
+    }
+    
     function setEmailType($emailType)
     {
         $this->emailtype = $emailType;
@@ -27,17 +33,25 @@ class EmailTypeModel implements IModel
         $this->active = $Active;
     }
     
-    /*hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee!*/
+    function setEmailtypeid($emailtypeid) { 
+             $this->emailtypeid = $emailtypeid; 
+     } 
+
     public function map(array $values) {
         
         if (array_key_exists('emailtype', $values))
         {
-            $this->setEmailType($values);
+            $this->setEmailType($values['emailtype']);
         }
         
         if (array_key_exists('active', $values))
         {
-            $this->setActive($values);
+            $this->setActive($values['active']);
+        }
+        
+        if(array_key_exists('emailtypeid', $values))
+        {
+            $this->setEmailtypeid($values['emailtypeid']);
         }
         
         return $this;
@@ -46,6 +60,8 @@ class EmailTypeModel implements IModel
     public function reset() {
         $this->SetEmailType('');
         $this->setActive('');
+        
+        return $this;
     }
     
 

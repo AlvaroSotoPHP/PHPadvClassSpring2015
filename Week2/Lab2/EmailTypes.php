@@ -8,7 +8,7 @@
 <?php
 
 $dbConfig = array(
-    "DB_DNS"=>'mysql:host=localhost;port3306;dbname=PHPadvClassSpring2015',
+    "DB_DNS"=>'mysql:host=localhost;port=3306;dbname=phpadvclassspring2015',
     "DB_USER"=>'root',
     "DB_PASSWORD"=>''
     );
@@ -16,11 +16,11 @@ $dbConfig = array(
 $pdo = new DB($dbConfig);
 $db = $pdo->getDB();
 
-$emailType = filter_input(INPUT_POST, 'type');
+$emailType = filter_input(INPUT_POST, 'emailtype');
 $active = filter_input(INPUT_POST, 'active');
 
 $emailTypeDAO = new EmailTypeDAO($db);
-$emailTypes = $emailTypeDAO->getAllRows();
+//$emailTypes = $emailTypeDAO->getAllRows();
 
 $util = new Util();
 
@@ -47,10 +47,11 @@ if ( $util->isPostRequest() ) {
                    }
                }
                else
-               {/////////////////////////////////////////////////////////
-                   //////////////////////////////////////////////////////
+               {
                    $emailTypeModel = new EmailTypeModel();
                    $emailTypeModel->map(filter_input_array(INPUT_POST));
+                   
+                   
                    
                    if ($emailTypeDAO->save($emailTypeModel))
                    {
@@ -67,7 +68,7 @@ if ( $util->isPostRequest() ) {
         <h3>Add Email Type</h3>
         <form action="#" method="post">
             <label>Phone Type</label>
-            <input type="text" name="type" value="<?php $emailType; ?>" placeholder="" />
+            <input type="text" name="emailtype" value="<?php $emailType; ?>" placeholder="" />
             <br />
             <br />
             <label>Active</label>
@@ -79,12 +80,12 @@ if ( $util->isPostRequest() ) {
             <input type="submit" value="Submit" />
             
             <?php
-                /*$emails = $emailTypeDAO->getAllRows();*/
             
-                foreach ($emailTypes as $value)
+                $emails = $emailTypeDAO->getAllRows();
+            
+                foreach ($emails as $value)
                 {
-                    echo '<tr><td>',$value->getEmailType(),'</td><td>';
-                    /*echo  '<td>', ( $value->getActive() == 1 ? 'Yes' : 'No') ,'</td></tr>' ;*/
+                    echo '<p>',$value->getEmailType(), ' - ', $value->getActive() == 1 ? 'Yes' : 'No';
                 }
                 ?>
     </body>

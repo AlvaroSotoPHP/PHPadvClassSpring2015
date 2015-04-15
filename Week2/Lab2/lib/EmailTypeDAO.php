@@ -19,6 +19,7 @@ class EmailTypeDAO implements IDAO2
     }
     
     public function delete($id) {
+        
         $db = $this->getDB();
         $stmt = $db->prepare("DELETE FROM emailtype WHERE emailtypeid = :emailtypeid");
         
@@ -26,7 +27,7 @@ class EmailTypeDAO implements IDAO2
         {
             return true;
         }
-        
+
         return false;
     }
 
@@ -51,14 +52,35 @@ class EmailTypeDAO implements IDAO2
         {
             //the insert did not work
             echo "it did not work";
+            //log($db->errorInfo() ) ;
         }
         
         $stmt->closeCursor();
         return $values;
+        
     }
 
     public function save(IModel $model) {
+        
         $db = $this->getDB();
+         
+         $values = array(":emailtype"=>$model->getEmailType(),
+                        ":active"=>$model->getActive()
+        );
+            
+             $stmt = $db->prepare("INSERT INTO emailtype SET emailtype = :emailtype, active = :active");
+         
+         
+          
+         if ( $stmt->execute($values) && $stmt->rowCount() > 0 ) {
+            return true;
+         }
+         
+         return false;
+        
+        
+        
+        /*$db = $this->getDB();
         $values = array(":emailtype"=>$model->getEmailType(),
                         ":active"=>$model->getActive()
         );
@@ -68,11 +90,15 @@ class EmailTypeDAO implements IDAO2
         if ($stmt->exec($values) && $stmt->rowCount() > 0)
         {
             return true;
-        }
+        }*/
     }
 
     public function getById($id) {
         $model = new emailType();
+    }
+
+    public function idExisit($id) {
+        //Nothing for this part of the lab
     }
 
 }

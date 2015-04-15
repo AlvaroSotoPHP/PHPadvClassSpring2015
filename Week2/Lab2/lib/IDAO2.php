@@ -9,5 +9,7 @@ interface IDAO2
     public function save(IModel $model);
     
     public function getAllRows();
+    
+    public function idExisit($id);
 }
 
