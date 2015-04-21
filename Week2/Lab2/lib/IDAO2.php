@@ -1,5 +1,5 @@
 <?php
-
+namespace asoto\week2;
 interface IDAO2
 {   
     public function getById($id);

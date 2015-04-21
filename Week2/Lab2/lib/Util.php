@@ -1,5 +1,5 @@
 <?php
-
+namespace asoto\week2;
 /**
  * Util - functions used to help with the over all application
  *

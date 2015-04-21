@@ -1,5 +1,6 @@
 <?php
-
+namespace asoto\week2;
+use PDO;
 class EmailsDAO implements IDAO2
 {
     

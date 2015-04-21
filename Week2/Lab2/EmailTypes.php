@@ -1,4 +1,7 @@
-<?php include './bootstrap.php' ?>
+<?php 
+namespace asoto\week2;
+include './bootstrap.php' 
+?>
 
 <html>
     <head>

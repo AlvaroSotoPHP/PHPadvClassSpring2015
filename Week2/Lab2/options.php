@@ -1,5 +1,9 @@
+<?php 
+namespace asoto\week2;
+include './bootstrap.php' 
+
+?>
 <!DOCTYPE html>
-<?php include './bootstrap.php' ?>
 <html>
     <head>
         <meta charset="UTF-8">

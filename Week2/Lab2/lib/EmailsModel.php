@@ -1,5 +1,5 @@
 <?php
-
+namespace asoto\week2;
 
 class EmailsModel implements IModel
 {

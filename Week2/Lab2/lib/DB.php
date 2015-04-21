@@ -1,5 +1,6 @@
 <?php
-
+namespace asoto\week2;
+use PDO;
 class DB {
     
     protected $db = null;
