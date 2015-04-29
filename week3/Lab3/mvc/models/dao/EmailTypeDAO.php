@@ -1,9 +1,4 @@
 <?php
-/**
- * Description of PhoneTypeDAO
- *
- * @author User
- */
 
 namespace App\models\services;
 
@@ -12,7 +7,7 @@ use App\models\interfaces\IModel;
 use App\models\interfaces\ILogging;
 use \PDO;
 
-class PhoneTypeDAO extends BaseDAO implements IDAO {
+class EmailTypeDAO extends BaseDAO implements IDAO {
     
     public function __construct( PDO $db, IModel $model, ILogging $log ) {        
         $this->setDB($db);
@@ -52,11 +47,11 @@ class PhoneTypeDAO extends BaseDAO implements IDAO {
                  
          $db = $this->getDB();
          
-         $binds = array( ":emailtype" => $model->getPhonetype(),
+         $binds = array( ":emailtype" => $model->getEmailtype(),
                           ":active" => $model->getActive()
                     );
                          
-         if ( !$this->idExisit($model->getPhonetypeid()) ) {
+         if ( !$this->idExisit($model->getEmailtypeid()) ) {
              
              $stmt = $db->prepare("INSERT INTO emailtype SET emailtype = :emailtype, active = :active");
              
@@ -74,13 +69,13 @@ class PhoneTypeDAO extends BaseDAO implements IDAO {
                  
          $db = $this->getDB();
          
-         $binds = array( ":emailtype" => $model->getPhonetype(),
+         $binds = array( ":emailtype" => $model->getEmailtype(),
                           ":active" => $model->getActive(),
-                          ":emailtypeid" => $model->getPhonetypeid()
+                          ":emailtypeid" => $model->getEmailtypeid()
                     );
          
                 
-         if ( $this->idExisit($model->getPhonetypeid()) ) {
+         if ( $this->idExisit($model->getEmailtypeid()) ) {
             
              $stmt = $db->prepare("UPDATE emailtype SET emailtype = :emailtype, active = :active WHERE emailtypeid = :emailtypeid");
          

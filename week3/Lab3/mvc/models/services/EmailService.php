@@ -1,9 +1,4 @@
 <?php
-/**
- * Description of PhoneService
- *
- * @author GFORTI
- */
 
 namespace App\models\services;
 
@@ -11,7 +6,7 @@ use App\models\interfaces\IDAO;
 use App\models\interfaces\IService;
 use App\models\interfaces\IModel;
 
-class PhoneService implements IService {
+class EmailService implements IService {
     
     protected $emailDAO;
     protected $emailTypeService;
@@ -25,19 +20,19 @@ class PhoneService implements IService {
         $this->validator = $validator;
     }                
      
-    function getPhoneDAO() {
+    function getEmailDAO() {
         return $this->emailDAO;
     }
 
-    function setPhoneDAO(IDAO $DAO) {
+    function setEmailDAO(IDAO $DAO) {
         $this->emailDAO = $DAO;
     }
     
-    function getPhoneTypeService() {
+    function getEmailTypeService() {
         return $this->emailTypeService;
     }
 
-    function setPhoneTypeService(IService $service) {
+    function setEmailTypeService(IService $service) {
         $this->emailTypeService = $service;
     }
     
@@ -51,27 +46,27 @@ class PhoneService implements IService {
     }
 
         public function __construct( IDAO $emailDAO, IService $emailTypeService, IService $validator, IModel $model  ) {
-        $this->setPhoneDAO($emailDAO);
-        $this->setPhoneTypeService($emailTypeService);
+        $this->setEmailDAO($emailDAO);
+        $this->setEmailTypeService($emailTypeService);
         $this->setValidator($validator);
         $this->setModel($model);
     }
     
     
-    public function getAllPhoneTypes() {       
-        return $this->getPhoneTypeService()->getAllRows();   
+    public function getAllEmailTypes() {       
+        return $this->getEmailTypeService()->getAllRows();   
         
     }
     
-     public function getAllPhones() {       
-        return $this->getPhoneDAO()->getAllRows();   
+     public function getAllEmails() {       
+        return $this->getEmailDAO()->getAllRows();   
         
     }
     
     public function create(IModel $model) {
         
         if ( count($this->validate($model)) === 0 ) {
-            return $this->getPhoneDAO()->create($model);
+            return $this->getEmailDAO()->create($model);
         }
         return false;
     }
@@ -80,16 +75,16 @@ class PhoneService implements IService {
     public function validate( IModel $model ) {
         $errors = array();
         
-        if ( !$this->getPhoneTypeService()->idExist($model->getPhonetypeid()) ) {
-            $errors[] = 'Phone Type is invalid';
+        if ( !$this->getEmailTypeService()->idExist($model->getEmailtypeid()) ) {
+            $errors[] = 'Email Type is invalid';
         }
        
-        if ( !$this->getValidator()->emailIsValid($model->getPhone()) ) {
-            $errors[] = 'Phone is invalid';
+        if ( !$this->getValidator()->emailIsValid($model->getEmail()) ) {
+            $errors[] = 'Email is invalid';
         }
                
         if ( !$this->getValidator()->activeIsValid($model->getActive()) ) {
-            $errors[] = 'Phone active is invalid';
+            $errors[] = 'Email active is invalid';
         }
        
         
@@ -98,24 +93,24 @@ class PhoneService implements IService {
     
     
     public function read($id) {
-        return $this->getPhoneDAO()->read($id);
+        return $this->getEmailDAO()->read($id);
     }
     
     public function delete($id) {
-        return $this->getPhoneDAO()->delete($id);
+        return $this->getEmailDAO()->delete($id);
     }
     
     
      public function update(IModel $model) {
         
         if ( count($this->validate($model)) === 0 ) {
-            return $this->getPhoneDAO()->update($model);
+            return $this->getEmailDAO()->update($model);
         }
         return false;
     }
     
     
-     public function getNewPhoneModel() {
+     public function getNewEmailModel() {
         return clone $this->getModel();
     }
     

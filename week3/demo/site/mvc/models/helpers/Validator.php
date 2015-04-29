@@ -26,29 +26,29 @@ class Validator implements IService {
     }
     
     /**
-     * A method to check if a phone number is valid.
+     * A method to check if a email number is valid.
      *
-     * @param {String} [$phone] - must be a valid phone number
+     * @param {String} [$email] - must be a valid email number
      *
      * @return boolean
      */
-    public function phoneIsValid($phone) {
-        return ( preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $phone) );
+    public function emailIsValid($email) {
+        return ( preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $email) );
     }
     
     /**
-     * A method to check if a phone type is valid.
+     * A method to check if a email type is valid.
      *
      * @param {String} [$type] - must be a valid string
      *
      * @return boolean
      */
-    public function phoneTypeIsValid($type) {
+    public function emailTypeIsValid($type) {
         return ( is_string($type) && preg_match("/^[a-zA-Z]+$/", $type) );
     }
     
     /**
-     * A method to check if a phone type is valid.
+     * A method to check if a email type is valid.
      *
      * @param {String} [$type] - must be a valid string
      *

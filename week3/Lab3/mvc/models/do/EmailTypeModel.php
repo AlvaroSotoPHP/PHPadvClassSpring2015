@@ -1,25 +1,19 @@
 <?php
 
-/**
- * Description of PhotoTypeModel
- *
- * @author User
- */
-
 namespace App\models\services;
 
 
-class PhoneTypeModel extends BaseModel {
+class EmailTypeModel extends BaseModel {
     
     private $emailtypeid;
     private $emailtype;
     private $active;
     
-    function getPhonetypeid() {
+    function getEmailtypeid() {
         return $this->emailtypeid;
     }
 
-    function getPhonetype() {
+    function getEmailtype() {
         return $this->emailtype;
     }
 
@@ -27,11 +21,11 @@ class PhoneTypeModel extends BaseModel {
         return $this->active;
     }
 
-    function setPhonetypeid($emailtypeid) {
+    function setEmailtypeid($emailtypeid) {
         $this->emailtypeid = $emailtypeid;
     }
 
-    function setPhonetype($emailtype) {
+    function setEmailtype($emailtype) {
         $this->emailtype = $emailtype;
     }
 

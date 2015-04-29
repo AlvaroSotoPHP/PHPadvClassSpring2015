@@ -1,15 +1,9 @@
 <?php
 
-/**
- * Description of PhoneModel
- *
- * @author GFORTI
- */
-
 namespace App\models\services;
 
 
-class PhoneModel extends BaseModel {
+class EmailModel extends BaseModel {
     
     private $emailid;
     private $email;
@@ -20,23 +14,23 @@ class PhoneModel extends BaseModel {
     private $lastupdated;
     private $active;
     
-    function getPhoneid() {
+    function getEmailid() {
         return $this->emailid;
     }
 
-    function getPhone() {
+    function getEmail() {
         return $this->email;
     }
 
-    function getPhonetypeid() {
+    function getEmailtypeid() {
         return $this->emailtypeid;
     }
     
-     function getPhonetype() {
+     function getEmailtype() {
         return $this->emailtype;
     }
 
-    function getPhonetypeactive() {
+    function getEmailtypeactive() {
         return $this->emailtypeactive;
     }
 
@@ -52,23 +46,23 @@ class PhoneModel extends BaseModel {
         return $this->active;
     }
 
-    function setPhoneid($emailid) {
+    function setEmailid($emailid) {
         $this->emailid = $emailid;
     }
 
-    function setPhone($email) {
+    function setEmail($email) {
         $this->email = $email;
     }
 
-    function setPhonetypeid($emailtypeid) {
+    function setEmailtypeid($emailtypeid) {
         $this->emailtypeid = $emailtypeid;
     }
 
-    function setPhonetype($emailtype) {
+    function setEmailtype($emailtype) {
         $this->emailtype = $emailtype;
     }
 
-    function setPhonetypeactive($emailtypeactive) {
+    function setEmailtypeactive($emailtypeactive) {
         $this->emailtypeactive = $emailtypeactive;
     }
     
