@@ -21,12 +21,12 @@ class PhoneTypeService {
     private $_PhonetypeModel;
 
 
-    public function __construct($db, $util, $validator, $phoneTypeDAO, $phonetypeModel) {
+    public function __construct($db, $util, $validator, $emailTypeDAO, $emailtypeModel) {
         $this->_DB = $db;    
         $this->_Util = $util;
         $this->_Validator = $validator;
-        $this->_PhoneTypeDAO = $phoneTypeDAO;
-        $this->_PhoneTypeModel = $phonetypeModel;
+        $this->_PhoneTypeDAO = $emailTypeDAO;
+        $this->_PhoneTypeModel = $emailtypeModel;
     }
 
 
@@ -54,7 +54,7 @@ class PhoneTypeService {
        
         if ( $this->_Util->isPostRequest() ) {                
             $this->_errors = array();
-            if( !$this->_Validator->phoneTypeIsValid($this->_PhoneTypeModel->getPhonetype()) ) {
+            if( !$this->_Validator->emailTypeIsValid($this->_PhoneTypeModel->getPhonetype()) ) {
                  $this->_errors[] = 'Phone Type is invalid';
             } 
             if( !$this->_Validator->activeIsValid($this->_PhoneTypeModel->getActive()) ) {
@@ -80,14 +80,14 @@ class PhoneTypeService {
 
     public function displayPhones() {        
        
-        $stmt = $this->_DB->prepare("SELECT * FROM phonetype");
+        $stmt = $this->_DB->prepare("SELECT * FROM emailtype");
 
         if ($stmt->execute() && $stmt->rowCount() > 0) {
             
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
            
             foreach ($results as $value) {
-                echo '<p>', $value['phonetype'], '</p>';
+                echo '<p>', $value['emailtype'], '</p>';
             }
         } else {
             echo '<p>No Data</p>';

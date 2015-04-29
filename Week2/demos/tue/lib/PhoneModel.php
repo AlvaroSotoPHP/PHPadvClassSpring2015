@@ -13,33 +13,33 @@
  */
 class PhoneModel implements IModel {
     
-    private $phoneid;
-    private $phone;
-    private $phonetypeid;
-    private $phonetype;
-    private $phonetypeactive;
+    private $emailid;
+    private $email;
+    private $emailtypeid;
+    private $emailtype;
+    private $emailtypeactive;
     private $logged;
     private $lastupdated;
     private $active;
     
     function getPhoneid() {
-        return $this->phoneid;
+        return $this->emailid;
     }
 
     function getPhone() {
-        return $this->phone;
+        return $this->email;
     }
 
     function getPhonetypeid() {
-        return $this->phonetypeid;
+        return $this->emailtypeid;
     }
     
      function getPhonetype() {
-        return $this->phonetype;
+        return $this->emailtype;
     }
 
     function getPhonetypeactive() {
-        return $this->phonetypeactive;
+        return $this->emailtypeactive;
     }
 
     function getLogged() {
@@ -54,24 +54,24 @@ class PhoneModel implements IModel {
         return $this->active;
     }
 
-    function setPhoneid($phoneid) {
-        $this->phoneid = $phoneid;
+    function setPhoneid($emailid) {
+        $this->emailid = $emailid;
     }
 
-    function setPhone($phone) {
-        $this->phone = $phone;
+    function setPhone($email) {
+        $this->email = $email;
     }
 
-    function setPhonetypeid($phonetypeid) {
-        $this->phonetypeid = $phonetypeid;
+    function setPhonetypeid($emailtypeid) {
+        $this->emailtypeid = $emailtypeid;
     }
 
-    function setPhonetype($phonetype) {
-        $this->phonetype = $phonetype;
+    function setPhonetype($emailtype) {
+        $this->emailtype = $emailtype;
     }
 
-    function setPhonetypeactive($phonetypeactive) {
-        $this->phonetypeactive = $phonetypeactive;
+    function setPhonetypeactive($emailtypeactive) {
+        $this->emailtypeactive = $emailtypeactive;
     }
     
     function setLogged($logged) {
@@ -105,24 +105,24 @@ class PhoneModel implements IModel {
    
     public function map(array $values) {
         
-        if ( array_key_exists('phoneid', $values) ) {
-            $this->setPhoneid($values['phoneid']);
+        if ( array_key_exists('emailid', $values) ) {
+            $this->setPhoneid($values['emailid']);
         }
         
-        if ( array_key_exists('phone', $values) ) {
-            $this->setPhone($values['phone']);
+        if ( array_key_exists('email', $values) ) {
+            $this->setPhone($values['email']);
         }
         
-        if ( array_key_exists('phonetypeid', $values) ) {
-            $this->setPhonetypeid($values['phonetypeid']);
+        if ( array_key_exists('emailtypeid', $values) ) {
+            $this->setPhonetypeid($values['emailtypeid']);
         }
         
-        if ( array_key_exists('phonetype', $values) ) {
-            $this->setPhonetype($values['phonetype']);
+        if ( array_key_exists('emailtype', $values) ) {
+            $this->setPhonetype($values['emailtype']);
         }
         
-        if ( array_key_exists('phonetypeactive', $values) ) {
-            $this->setPhonetypeactive($values['phonetypeactive']);
+        if ( array_key_exists('emailtypeactive', $values) ) {
+            $this->setPhonetypeactive($values['emailtypeactive']);
         }
         
         if ( array_key_exists('logged', $values) ) {

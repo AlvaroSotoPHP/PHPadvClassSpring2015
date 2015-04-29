@@ -32,6 +32,7 @@ include './bootstrap.php'
     
     $util = new Util();
     
+    if ( $util->isPostRequest() ) {
      $validator = new Validator(); 
                 $errors = array();
                 if( !$validator->emailIsValid($email) ) {
@@ -69,9 +70,10 @@ include './bootstrap.php'
                     
                 }
                 
-                $test = filter_input(INPUT_POST, 'emailtypeid');
+                //$test = filter_input(INPUT_POST, 'emailtypeid');
                 
-                echo $test;
+                //echo $test;
+    }
             ?>
 
         <h3>Add Email</h3>

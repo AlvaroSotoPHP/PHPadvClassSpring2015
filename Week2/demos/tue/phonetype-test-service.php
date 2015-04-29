@@ -17,28 +17,28 @@
         $pdo = new DB($dbConfig);
         $db = $pdo->getDB();
 
-        $phoneType = filter_input(INPUT_POST, 'phonetype');
+        $emailType = filter_input(INPUT_POST, 'emailtype');
         $active = filter_input(INPUT_POST, 'active');
         
         $util = new Util();
         $validator = new Validator();
-        $phoneTypeDAO = new PhoneTypeDAO($db);
+        $emailTypeDAO = new PhoneTypeDAO($db);
         
-        $phonetypeModel = new PhoneTypeModel();
-        $phonetypeModel->setActive($active);
-        $phonetypeModel->setPhonetype($phoneType);
+        $emailtypeModel = new PhoneTypeModel();
+        $emailtypeModel->setActive($active);
+        $emailtypeModel->setPhonetype($emailType);
 
-        $phoneTypeService = new PhoneTypeService($db, $util, $validator, $phoneTypeDAO, $phonetypeModel);
+        $emailTypeService = new PhoneTypeService($db, $util, $validator, $emailTypeDAO, $emailtypeModel);
         
-        $phoneTypeService->saveForm();
+        $emailTypeService->saveForm();
         
         ?>
         
         
-         <h3>Add phone type</h3>
+         <h3>Add email type</h3>
         <form action="#" method="post">
             <label>Phone Type:</label> 
-            <input type="text" name="phonetype" value="<?php echo $phoneType; ?>" placeholder="" />
+            <input type="text" name="emailtype" value="<?php echo $emailType; ?>" placeholder="" />
             <br /><br />
             <label>Active:</label>
             <input type="number" max="1" min="0" name="active" value="<?php echo $active; ?>" />
@@ -48,7 +48,7 @@
          
          
          <?php         
-             $phoneTypeService->displayPhones();
+             $emailTypeService->displayPhones();
          ?>
          
          

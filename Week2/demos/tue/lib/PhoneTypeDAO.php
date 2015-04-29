@@ -31,9 +31,9 @@ class PhoneTypeDAO implements IDAO {
     public function idExisit($id) {
         
         $db = $this->getDB();
-        $stmt = $db->prepare("SELECT * FROM phonetype WHERE phonetypeid = :phonetypeid");
+        $stmt = $db->prepare("SELECT * FROM emailtype WHERE emailtypeid = :emailtypeid");
          
-        if ( $stmt->execute(array(':phonetypeid' => $id)) && $stmt->rowCount() > 0 ) {
+        if ( $stmt->execute(array(':emailtypeid' => $id)) && $stmt->rowCount() > 0 ) {
             return true;
         }
          return false;
@@ -44,9 +44,9 @@ class PhoneTypeDAO implements IDAO {
          $model = new PhoneTypeModel(); // this creates a dependacy, how can we fix this
          $db = $this->getDB();
          
-         $stmt = $db->prepare("SELECT * FROM phonetype WHERE phonetypeid = :phonetypeid");
+         $stmt = $db->prepare("SELECT * FROM emailtype WHERE emailtypeid = :emailtypeid");
          
-         if ( $stmt->execute(array(':phonetypeid' => $id)) && $stmt->rowCount() > 0 ) {
+         if ( $stmt->execute(array(':emailtypeid' => $id)) && $stmt->rowCount() > 0 ) {
              $results = $stmt->fetch(PDO::FETCH_ASSOC);
              $model->map($results);            
          }
@@ -59,16 +59,16 @@ class PhoneTypeDAO implements IDAO {
                  
          $db = $this->getDB();
          
-         $values = array( ":phonetype" => $model->getPhonetype(),
+         $values = array( ":emailtype" => $model->getPhonetype(),
                           ":active" => $model->getActive()
                     );
          
                 
          if ( $this->idExisit($model->getPhonetypeid()) ) {
-             $values[":phonetypeid"] = $model->getPhonetypeid();
-             $stmt = $db->prepare("UPDATE phonetype SET phonetype = :phonetype, active = :active WHERE phonetypeid = :phonetypeid");
+             $values[":emailtypeid"] = $model->getPhonetypeid();
+             $stmt = $db->prepare("UPDATE emailtype SET emailtype = :emailtype, active = :active WHERE emailtypeid = :emailtypeid");
          } else {             
-             $stmt = $db->prepare("INSERT INTO phonetype SET phonetype = :phonetype, active = :active");
+             $stmt = $db->prepare("INSERT INTO emailtype SET emailtype = :emailtype, active = :active");
          }
          
           
@@ -83,9 +83,9 @@ class PhoneTypeDAO implements IDAO {
     public function delete($id) {
           
          $db = $this->getDB();         
-         $stmt = $db->prepare("Delete FROM phonetype WHERE phonetypeid = :phonetypeid");
+         $stmt = $db->prepare("Delete FROM emailtype WHERE emailtypeid = :emailtypeid");
          
-         if ( $stmt->execute(array(':phonetypeid' => $id)) && $stmt->rowCount() > 0 ) {
+         if ( $stmt->execute(array(':emailtypeid' => $id)) && $stmt->rowCount() > 0 ) {
              return true;
          }
          
@@ -98,7 +98,7 @@ class PhoneTypeDAO implements IDAO {
        
         $values = array();         
         $db = $this->getDB();               
-        $stmt = $db->prepare("SELECT * FROM phonetype");
+        $stmt = $db->prepare("SELECT * FROM emailtype");
         
         if ( $stmt->execute() && $stmt->rowCount() > 0 ) {
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

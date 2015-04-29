@@ -23,7 +23,6 @@ $emailType = filter_input(INPUT_POST, 'emailtype');
 $active = filter_input(INPUT_POST, 'active');
 
 $emailTypeDAO = new EmailTypeDAO($db);
-//$emailTypes = $emailTypeDAO->getAllRows();
 
 $util = new Util();
 
@@ -82,15 +81,26 @@ if ( $util->isPostRequest() ) {
             
             <input type="submit" value="Submit" />
             
+            <br />
+            <br />
+            <table border="1" cellpadding="5">
+                <tr>
+                    <th>Type</th>
+                    <th>Options</th>
+                </tr>
+                
             <?php
             
                 $emails = $emailTypeDAO->getAllRows();
             
                 foreach ($emails as $value)
                 {
-                    echo '<p>',$value->getEmailType(), ' - ', $value->getActive() == 1 ? 'Yes' : 'No';
+                    echo '<tr><td>',$value->getEmailType(), ' - ', $value->getActive() == 1 ? 'Yes' : 'No', '</td>';
+                    echo '<td><a href=options2.php?emailtypeid=', $value->getEmailTypeId(), '>Options</a></td>';
                 }
                 ?>
+                
+            </table>
     </body>
             
         </form>

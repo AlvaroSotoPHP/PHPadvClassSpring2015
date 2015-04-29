@@ -69,8 +69,15 @@ class EmailTypeDAO implements IDAO2
                         ":active"=>$model->getActive()
         );
             
-             $stmt = $db->prepare("INSERT INTO emailtype SET emailtype = :emailtype, active = :active");
-         
+        if ($this->idExisit($model->getEmailTypeId()))
+        {
+            $values[":emailtypeid"] = $model->getEmailtypeId();
+            $stmt = $db->prepare("UPDATE emailtype SET emailtype = :emailtype, active = :active WHERE emailtypeid = :emailtypeid");
+        }
+        else
+        {
+        $stmt = $db->prepare("INSERT INTO emailtype SET emailtype = :emailtype, active = :active");
+        }
          
           
          if ( $stmt->execute($values) && $stmt->rowCount() > 0 ) {
@@ -79,27 +86,32 @@ class EmailTypeDAO implements IDAO2
          
          return false;
         
-        
-        
-        /*$db = $this->getDB();
-        $values = array(":emailtype"=>$model->getEmailType(),
-                        ":active"=>$model->getActive()
-        );
-        
-        $stmt = $db->prepare("INSERT INTO emailtype SET emailtype = :emailtype, active = :active");
-        
-        if ($stmt->exec($values) && $stmt->rowCount() > 0)
-        {
-            return true;
-        }*/
     }
 
     public function getById($id) {
-        $model = new emailType();
+        //$model = new EmailType();
+        $model = new EmailTypeModel();
+        $db = $this->getDB();
+         
+        $stmt = $db->prepare("SELECT * FROM emailtype WHERE emailtypeid = :emailtypeid");
+         
+         if ( $stmt->execute(array(':emailtypeid' => $id)) && $stmt->rowCount() > 0 ) {
+             $results = $stmt->fetch(PDO::FETCH_ASSOC);
+             $model->map($results);            
+         }
+         
+         return $model;
     }
 
     public function idExisit($id) {
-        //Nothing for this part of the lab
+        $db = $this->getDB();
+        $stmt = $db->prepare("SELECT * FROM emailtype WHERE emailtypeid = :emailtypeid");
+        
+        if($stmt->execute(array(':emailtypeid' => $id)) && $stmt->rowCount() > 0 ) 
+        {
+            return true;
+        }
+        return false;
     }
 
 }
