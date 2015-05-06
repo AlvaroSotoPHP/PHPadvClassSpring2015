@@ -1,23 +1,18 @@
 <?php
-
 namespace App\models\services;
-
 use App\models\interfaces\IController;
 use App\models\interfaces\ILogging;
 use App\models\interfaces\IService;
 use Exception;
-
  final class Index {
      
     
     protected $DI = array();
     protected $log = null;
-
      
     protected function getLog() {
         return $this->log;
     }
-
     public function setLog(ILogging $log) {       
         $this->log = $log;
     }
@@ -26,8 +21,9 @@ use Exception;
          $this->DI[$this->getPageController($page)] = $func;
          return $this;
      }
-
-        //System config
+          /**
+         * System config.
+         */
         public function __construct() {
             // error reporting - all errors for development (ensure you have display_errors = On in your php.ini file)
             error_reporting(E_ALL | E_STRICT);
@@ -40,9 +36,9 @@ use Exception;
             
             $this->DI = array();
         }
-
-        
-        //Run the application
+        /**
+         * Run the application!
+         */
         public function run(IService $scope) {  
             $page = $this->getPage();
             if ( !$this->runController($page,$scope) ) {
@@ -74,7 +70,9 @@ use Exception;
             return false;
         }
                
-        //Exception handler
+        /**
+         * Exception handler.
+         */
         public function handleException(Exception $ex) {     
             
             if ($ex instanceof PageNotFoundException) {  
@@ -87,8 +85,9 @@ use Exception;
              $this->redirect('page404',array("error"=>$ex->getMessage()));
             
         }
-
-        //Class loader
+        /**
+         * Class loader.
+         */
         public function loadClass($base) {
             
             $baseName = explode( '\\', $base );
@@ -114,7 +113,6 @@ use Exception;
              
         }
               
-
         protected function getPage() {
             $page = filter_input(INPUT_GET, 'page');            
             if ( NULL === $page || $page === FALSE ) {
@@ -126,10 +124,9 @@ use Exception;
         protected function getPageController($page) {
             return ucfirst(strtolower($page)).'Controller';
         }
-
         protected function checkPage($page) {            
             if ( !( is_string($page) && preg_match('/^[a-z0-9-]+$/i', $page) != 0 ) ) {
-                //TODO log attempt, redirect attacker
+                // TODO log attempt, redirect attacker, ...
                throw new PageNotFoundException('Unsafe page "' . $page . '" requested');
             }        
             
@@ -137,26 +134,35 @@ use Exception;
         }
         
         
-           
-    //Generate link
+        
+        
+    /**
+     * Generate link.
+     * @param string $page target page
+     * @param array $params page parameters
+     */
     public function createLink($page, array $params = array()) {        
         return $page . '?' .http_build_query($params);
     }
     
-    //Redirect to the given page
+     /**
+     * Redirect to the given page.
+     * @param type $page target page
+     * @param array $params page parameters
+     */
     public function redirect($page, array $params = array()) {
         header('Location: ' . $this->createLink($page, $params));
         die();
     }
-
 }
-
-
+       
+    //http://php.net/manual/en/language.oop5.typehinting.php
     function runPage() {
         $_configURL = '.' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'config.ini.php';
         $index = new Index();
-
-        //Functions to use for Dependency Injection
+        /*
+         * Functions to use for Dependency Injection
+         */
         $_config = new Config($_configURL);
         $_log = new FileLogging();
         $index->setLog($_log);
@@ -168,34 +174,35 @@ use Exception;
         $_emailTypemodel = new EmailTypeModel();
         $_emailmodel = new EmailModel();
         
+        //constructor for the DAO's getting the correct DB, logs, and models for each DAO
         $_emailTypeDAO = new EmailTypeDAO($_pdo->getDB(), $_emailTypemodel, $_log);
         $_emailDAO = new EmailDAO($_pdo->getDB(), $_emailmodel, $_log);
         
         
-        $_emailTypeService = new EmailTypeService($_emailTypeDAO, $_validator, $_emailTypemodel );
-        $_emailService = new EmailService($_emailDAO, $_emailTypeService, $_validator, $_emailmodel);
+        $_emailtypeService = new EmailTypeService($_emailTypeDAO, $_validator, $_emailTypemodel );
+        $_emailService = new EmailService($_emailDAO, $_emailtypeService, $_validator, $_emailmodel);
         
          $_testService = new TestService();
         
-
+        //http://php.net/manual/en/functions.anonymous.php
         $index->addDIController('index', function() {            
             return new \APP\controller\IndexController();
         })
-        ->addDIController('emailtype', function() use ($_emailTypeService ) { 
-            return new \APP\controller\EmailtypeController($_emailTypeService);
-        })
         
-        ->addDIController('email', function() use ($_emailService ) {                        
-            return new \APP\controller\EmailController($_emailService);
-        })
         ->addDIController('test', function()  use ($_testService ){           
             return new \APP\controller\TestController($_testService);
         })
+        ->addDIController('emailtype', function()  use ($_emailtypeService ){           
+            return new \APP\controller\EmailTypeController($_emailtypeService);
+        })
+        ->addDIController('email', function()  use ($_emailService ){           
+            return new \APP\controller\EmailController($_emailService);
+        })
         
         ;
-        //run application
+        // run application!
         $index->run($_scope);
     }
     
     runPage();
-    
+

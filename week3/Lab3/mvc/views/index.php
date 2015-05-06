@@ -5,6 +5,7 @@
         <title></title>
     </head>
     <body>
+        
         <a href="emailtype">Email Type</a>
         <a href="email">Email</a>
     </body>

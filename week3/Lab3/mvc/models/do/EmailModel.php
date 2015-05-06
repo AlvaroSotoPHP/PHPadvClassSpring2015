@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Description of EmailModel
+ *
+ * @author GFORTI
+ */
+
 namespace App\models\services;
 
 

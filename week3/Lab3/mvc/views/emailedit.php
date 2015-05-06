@@ -6,7 +6,9 @@
     </head>
     <body>
         <?php
-
+        // put your code here
+        
+        
          if ( isset($scope->view['updated']) ) {
             if( $scope->view['updated'] ) {        
                  echo 'Email Updated';

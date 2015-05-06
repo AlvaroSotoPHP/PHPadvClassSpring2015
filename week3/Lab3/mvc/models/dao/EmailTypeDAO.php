@@ -1,4 +1,9 @@
 <?php
+/**
+ * Description of EmailTypeDAO
+ *
+ * @author User
+ */
 
 namespace App\models\services;
 

@@ -34,6 +34,9 @@
         
         <?php
         
+        
+        //var_dump($scope->view);
+        
         echo $scope->view['test1'];
         echo $scope->view['test2'];
         if ( isset($scope->view['test3']) ) {

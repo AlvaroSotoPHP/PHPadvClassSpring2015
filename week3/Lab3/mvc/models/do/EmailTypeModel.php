@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Description of PhotoTypeModel
+ *
+ * @author User
+ */
+
 namespace App\models\services;
 
 

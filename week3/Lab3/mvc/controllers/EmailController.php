@@ -1,4 +1,9 @@
 <?php
+/**
+ * Description of EmailController
+ *
+ * @author GFORTI
+ */
 
 namespace APP\controller;
 
