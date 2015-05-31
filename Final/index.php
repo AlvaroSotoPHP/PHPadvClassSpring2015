@@ -180,20 +180,20 @@ use Exception;
         $_scope->util = $index->util2;
         $_validator = new Validator();
         
-        $_emailTypemodel = new EmailTypeModel();
-        $_emailmodel = new EmailModel();
+        $_projectTypemodel = new ProjectTypeModel();
+        $_projectmodel = new ProjectModel();
         $_signupmodel = new SignupModel();
         $_loginmodel = new LoginModel();
         
         //constructor for the DAO's getting the correct DB, logs, and models for each DAO
-        $_emailTypeDAO = new EmailTypeDAO($_pdo->getDB(), $_emailTypemodel, $_log);
-        $_emailDAO = new EmailDAO($_pdo->getDB(), $_emailmodel, $_log);
+        $_projectTypeDAO = new ProjectTypeDAO($_pdo->getDB(), $_projectTypemodel, $_log);
+        $_projectDAO = new ProjectDAO($_pdo->getDB(), $_projectmodel, $_log);
         $_signupDAO = new SignupDAO($_pdo->getDB(), $_signupmodel, $_log);
         $_loginDAO = new LoginDAO($_pdo->getDB(), $_loginmodel, $_log);
         
         
-        $_emailtypeService = new EmailTypeService($_emailTypeDAO, $_validator, $_emailTypemodel );
-        $_emailService = new EmailService($_emailDAO, $_emailtypeService, $_validator, $_emailmodel);
+        $_projecttypeService = new ProjectTypeService($_projectTypeDAO, $_validator, $_projectTypemodel );
+        $_projectService = new ProjectService($_projectDAO, $_projecttypeService, $_validator, $_projectmodel);
         
         
          $_testService = new TestService();
@@ -208,11 +208,11 @@ use Exception;
         ->addDIController('test', function()  use ($_testService ){           
             return new \APP\controller\TestController($_testService);
         })
-        ->addDIController('emailtype', function()  use ($_emailtypeService ){           
-            return new \APP\controller\EmailTypeController($_emailtypeService);
+        ->addDIController('projecttype', function()  use ($_projecttypeService ){           
+            return new \APP\controller\ProjectTypeController($_projecttypeService);
         })
-        ->addDIController('email', function()  use ($_emailService ){           
-            return new \APP\controller\EmailController($_emailService);
+        ->addDIController('project', function()  use ($_projectService ){           
+            return new \APP\controller\ProjectController($_projectService);
         })
         ->addDIController('signup', function() use ($_signupService ){
             return new \APP\controller\SignUpController($_signupService);

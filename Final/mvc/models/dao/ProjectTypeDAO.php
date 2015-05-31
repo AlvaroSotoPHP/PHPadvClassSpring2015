@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of EmailTypeDAO
+ * Description of ProjectTypeDAO
  *
  * @author User
  */
@@ -12,7 +12,7 @@ use App\models\interfaces\IModel;
 use App\models\interfaces\ILogging;
 use \PDO;
 
-class EmailTypeDAO extends BaseDAO implements IDAO {
+class ProjectTypeDAO extends BaseDAO implements IDAO {
     
     public function __construct( PDO $db, IModel $model, ILogging $log ) {        
         $this->setDB($db);
@@ -23,9 +23,9 @@ class EmailTypeDAO extends BaseDAO implements IDAO {
     public function idExisit($id) {
         
         $db = $this->getDB();
-        $stmt = $db->prepare("SELECT * FROM emailtype WHERE emailtypeid = :emailtypeid");
+        $stmt = $db->prepare("SELECT * FROM projecttype WHERE projecttypeid = :projecttypeid");
          
-        if ( $stmt->execute(array(':emailtypeid' => $id)) && $stmt->rowCount() > 0 ) {
+        if ( $stmt->execute(array(':projecttypeid' => $id)) && $stmt->rowCount() > 0 ) {
             return true;
         }
          return false;
@@ -37,9 +37,9 @@ class EmailTypeDAO extends BaseDAO implements IDAO {
          
          $db = $this->getDB();
          
-         $stmt = $db->prepare("SELECT * FROM emailtype WHERE emailtypeid = :emailtypeid");
+         $stmt = $db->prepare("SELECT * FROM projecttype WHERE projecttypeid = :projecttypeid");
          
-         if ( $stmt->execute(array(':emailtypeid' => $id)) && $stmt->rowCount() > 0 ) {
+         if ( $stmt->execute(array(':projecttypeid' => $id)) && $stmt->rowCount() > 0 ) {
              $results = $stmt->fetch(PDO::FETCH_ASSOC);
              $model->reset()->map($results);
          }
@@ -52,13 +52,13 @@ class EmailTypeDAO extends BaseDAO implements IDAO {
                  
          $db = $this->getDB();
          
-         $binds = array( ":emailtype" => $model->getEmailtype(),
+         $binds = array( ":projecttype" => $model->getProjecttype(),
                           ":active" => $model->getActive()
                     );
                          
-         if ( !$this->idExisit($model->getEmailtypeid()) ) {
+         if ( !$this->idExisit($model->getProjecttypeid()) ) {
              
-             $stmt = $db->prepare("INSERT INTO emailtype SET emailtype = :emailtype, active = :active");
+             $stmt = $db->prepare("INSERT INTO projecttype SET projecttype = :projecttype, active = :active");
              
              if ( $stmt->execute($binds) && $stmt->rowCount() > 0 ) {
                 return true;
@@ -74,15 +74,15 @@ class EmailTypeDAO extends BaseDAO implements IDAO {
                  
          $db = $this->getDB();
          
-         $binds = array( ":emailtype" => $model->getEmailtype(),
+         $binds = array( ":projecttype" => $model->getProjecttype(),
                           ":active" => $model->getActive(),
-                          ":emailtypeid" => $model->getEmailtypeid()
+                          ":projecttypeid" => $model->getProjecttypeid()
                     );
          
                 
-         if ( $this->idExisit($model->getEmailtypeid()) ) {
+         if ( $this->idExisit($model->getProjecttypeid()) ) {
             
-             $stmt = $db->prepare("UPDATE emailtype SET emailtype = :emailtype, active = :active WHERE emailtypeid = :emailtypeid");
+             $stmt = $db->prepare("UPDATE projecttype SET projecttype = :projecttype, active = :active WHERE projecttypeid = :projecttypeid");
          
              if ( $stmt->execute($binds) && $stmt->rowCount() > 0 ) {
                 return true;
@@ -99,9 +99,9 @@ class EmailTypeDAO extends BaseDAO implements IDAO {
     public function delete($id) {
           
         $db = $this->getDB();         
-        $stmt = $db->prepare("Delete FROM emailtype WHERE emailtypeid = :emailtypeid");
+        $stmt = $db->prepare("Delete FROM projecttype WHERE projecttypeid = :projecttypeid");
 
-        if ( $stmt->execute(array(':emailtypeid' => $id)) && $stmt->rowCount() > 0 ) {
+        if ( $stmt->execute(array(':projecttypeid' => $id)) && $stmt->rowCount() > 0 ) {
             return true;
         } else {
             $error = implode(",", $db->errorInfo());
@@ -115,7 +115,7 @@ class EmailTypeDAO extends BaseDAO implements IDAO {
        $db = $this->getDB();
        $values = array();
        
-        $stmt = $db->prepare("SELECT * FROM emailtype");
+        $stmt = $db->prepare("SELECT * FROM projecttype");
         
         if ( $stmt->execute() && $stmt->rowCount() > 0 ) {
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

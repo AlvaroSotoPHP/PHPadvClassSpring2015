@@ -7,7 +7,7 @@
  */
 
 /**
- * Description of EmailtypeController
+ * Description of ProjecttypeController
  *
  * @author User
  */
@@ -17,19 +17,19 @@ namespace APP\controller;
 use App\models\interfaces\IController;
 use App\models\interfaces\IService;
 
-class EmailtypeController extends BaseController implements IController {
+class ProjecttypeController extends BaseController implements IController {
        
-    public function __construct( IService $EmailTypeService ) {                
-        $this->service = $EmailTypeService;     
+    public function __construct( IService $ProjectTypeService ) {                
+        $this->service = $ProjectTypeService;     
         
     }
 
 
     public function execute(IService $scope) {
                 
-        $this->data['model'] = $this->service->getNewEmailTypeModel();
+        $this->data['model'] = $this->service->getNewProjectTypeModel();
         $this->data['model']->reset();
-        $viewPage = 'emailtype';
+        $viewPage = 'projecttype';
         
         
         if ( $scope->util->isPostRequest() ) {
@@ -38,6 +38,7 @@ class EmailtypeController extends BaseController implements IController {
                 $this->data['model']->map($scope->util->getPostValues());
                 $this->data["errors"] = $this->service->validate($this->data['model']);
                 $this->data["saved"] = $this->service->create($this->data['model']);
+                var_dump($this->data["saved"]);
             }
             
             if ( $scope->util->getAction() == 'update'  ) {
@@ -49,19 +50,19 @@ class EmailtypeController extends BaseController implements IController {
             
             if ( $scope->util->getAction() == 'edit' ) {
                 $viewPage .= 'edit';
-                $this->data['model'] = $this->service->read($scope->util->getPostParam('emailtypeid'));
+                $this->data['model'] = $this->service->read($scope->util->getPostParam('projecttypeid'));
                   
             }
             
             if ( $scope->util->getAction() == 'delete' ) {                
-                $this->data["deleted"] = $this->service->delete($scope->util->getPostParam('emailtypeid'));
+                $this->data["deleted"] = $this->service->delete($scope->util->getPostParam('projecttypeid'));
             }
                        
         }
         
         
        
-        $this->data['EmailTypes'] = $this->service->getAllRows();        
+        $this->data['ProjectTypes'] = $this->service->getAllRows();        
         
         
         $scope->view = $this->data;

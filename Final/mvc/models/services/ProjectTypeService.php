@@ -7,7 +7,7 @@
  */
 
 /**
- * Description of EmailTypeService
+ * Description of ProjectTypeService
  *
  * @author User
  */
@@ -18,7 +18,7 @@ use App\models\interfaces\IDAO;
 use App\models\interfaces\IService;
 use App\models\interfaces\IModel;
 
-class EmailTypeService implements IService {
+class ProjectTypeService implements IService {
     
      protected $DAO;
      protected $validator;
@@ -49,8 +49,8 @@ class EmailTypeService implements IService {
          $this->DAO = $DAO;
      }
 
-    public function __construct( IDAO $EmailTypeDAO, IService $validator,IModel $model  ) {
-        $this->setDAO($EmailTypeDAO);
+    public function __construct( IDAO $ProjectTypeDAO, IService $validator,IModel $model  ) {
+        $this->setDAO($ProjectTypeDAO);
         $this->setValidator($validator);
         $this->setModel($model);
     }
@@ -90,12 +90,12 @@ class EmailTypeService implements IService {
     
     public function validate( IModel $model ) {
         $errors = array();
-        if ( !$this->getValidator()->emailTypeIsValid($model->getEmailtype()) ) {
-            $errors[] = 'Email Type is invalid';
+        if ( !$this->getValidator()->projectTypeIsValid($model->getProjecttype()) ) {
+            $errors[] = 'Project Type is invalid';
         }
                
         if ( !$this->getValidator()->activeIsValid($model->getActive()) ) {
-            $errors[] = 'Email active is invalid';
+            $errors[] = 'Project active is invalid';
         }
        
         
@@ -103,7 +103,7 @@ class EmailTypeService implements IService {
     }
     
     
-    public function getNewEmailTypeModel() {
+    public function getNewProjectTypeModel() {
         return clone $this->getModel();
     }
     

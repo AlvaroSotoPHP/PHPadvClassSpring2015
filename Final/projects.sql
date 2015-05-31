@@ -1,7 +1,7 @@
 USE PHPadvClassSpring2015;
 
 CREATE TABLE IF NOT EXISTS `project` (
-`projectid` int(10) unsigned NOT NULL,
+`projectid` int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `project` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `projecttypeid` tinyint(3) unsigned DEFAULT NULL,
   `logged` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS `project` (
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 CREATE TABLE IF NOT EXISTS `projecttype` (
-`projecttypeid` tinyint(3) unsigned NOT NULL,
+`projecttypeid` tinyint(3) NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `projecttype` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `active` tinyint(1) unsigned DEFAULT '1'
 ) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

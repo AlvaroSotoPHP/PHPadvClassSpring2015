@@ -11,10 +11,7 @@
             var_dump($scope->util->isLoggedin());
         
             if ( $scope->util->isPostRequest() ) {
-                /*$db = new DB($dbConfig); 
-                $model = new LoginModel();
-                $LoginDao = new LoginDAO($db->getDB(), $model); */
-                
+
                 $model = $this->service->getModel();
                 $LoginDao = $this->service->getDAO();
 

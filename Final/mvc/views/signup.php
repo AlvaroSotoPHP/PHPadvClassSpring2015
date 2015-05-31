@@ -8,16 +8,10 @@
     <body>
         <?php
 
-        use App\models\services\SignupDAO;
-
             if ( $scope->util->isPostRequest() ) {
                 
                 $model = $this->service->getModel();
-                /*$db = $this->service->getDAO()->getDB();
-                $_log = $this->service->getDAO()->getLog();
-                $signupDao = new SignupDAO($db, $model, $_log); */
                 $signupDao = $this->service->getDAO();
-
                 $model->map(filter_input_array(INPUT_POST));
                                 
                 if ( $signupDao->create($model) ) {

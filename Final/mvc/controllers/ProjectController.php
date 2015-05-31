@@ -1,6 +1,6 @@
 <?php
 /**
- * Description of EmailController
+ * Description of ProjectController
  *
  * @author GFORTI
  */
@@ -10,18 +10,18 @@ namespace APP\controller;
 use App\models\interfaces\IController;
 use App\models\interfaces\IService;
 
-class EmailController extends BaseController implements IController {
+class ProjectController extends BaseController implements IController {
    
     protected $service;
     
-    public function __construct( IService $EmailService  ) {                
-        $this->service = $EmailService;  
+    public function __construct( IService $ProjectService  ) {                
+        $this->service = $ProjectService;  
     }
     
     public function execute(IService $scope) {
-        $viewPage = 'email';
+        $viewPage = 'project';
         
-        $this->data['model'] = $this->service->getNewEmailModel();
+        $this->data['model'] = $this->service->getNewProjectModel();
         $this->data['model']->reset();
         
         if ( $scope->util->isPostRequest() ) {
@@ -35,12 +35,12 @@ class EmailController extends BaseController implements IController {
             
             if ( $scope->util->getAction() == 'edit' ) {
                 $viewPage .= 'edit';
-                $this->data['model'] = $this->service->read($scope->util->getPostParam('emailid'));
+                $this->data['model'] = $this->service->read($scope->util->getPostParam('projectid'));
                   
             }
             
             if ( $scope->util->getAction() == 'delete' ) {                
-                $this->data["deleted"] = $this->service->delete($scope->util->getPostParam('emailid'));
+                $this->data["deleted"] = $this->service->delete($scope->util->getPostParam('projectid'));
             }
             
              if ( $scope->util->getAction() == 'update'  ) {
@@ -54,8 +54,8 @@ class EmailController extends BaseController implements IController {
         }
         
         
-        $this->data['emailTypes'] = $this->service->getAllEmailTypes(); 
-        $this->data['emails'] = $this->service->getAllEmails(); 
+        $this->data['projectTypes'] = $this->service->getAllProjectTypes(); 
+        $this->data['projects'] = $this->service->getAllProjects(); 
         
         $scope->view = $this->data;
         return $this->view($viewPage,$scope);

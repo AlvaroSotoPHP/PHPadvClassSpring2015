@@ -10,19 +10,28 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div id="left" style="background-color: aqua; height: 750px; width: 200px; float: left; text-align: center;">
+        <div id="left" style="background-color: aqua; height: 750px; width: 200px; float: left; text-align: center; top: 0px;">
             <?php 
             var_dump($scope->util->isLoggedin());
             ?>
+            <br />
             <a href="index" style="font-size: x-large;">Index</a>
+            <br />
             <br />
             <a href="signup" style="font-size: x-large;">Sign Up</a>
             <br />
+            <br />
             <a href="login" style="font-size: x-large;">Login</a>
             <br />
-            <a href="emailtype" style="font-size: x-large;">Email Type</a>
             <br />
-            <a href="email" style="font-size: x-large;">Email</a>
+            <a href="projecttype" style="font-size: x-large;">Project Type</a>
+            <br />
+            <br />
+            <a href="project" style="font-size: x-large;">Project</a>
+        </div>
+        
+        <div style="display: block; position: absolute; width: 1520px; height: 25px; bottom: 0px; float: bottom; background-color: orange; text-align: center">
+            <FONT face=Arial><STRONG><A href="http://www.copyrightauthority.com/copyright-symbol">Copyright</A>&nbsp;&nbsp2015  Alvaro Soto - All Rights Reserved</STRONG></FONT>
         </div>
     </body>
 </html>
