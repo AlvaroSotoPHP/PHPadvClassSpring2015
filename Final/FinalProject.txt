@@ -1,0 +1,32 @@
+Final Project Idea
+
+Team members:	Alvaro Soto
+
+Project idea: 	A website for a company that sells software.
+		it will keep track of the transactions, the customers,
+		any changes made to the purchase.
+
+Tasks: 		1. Develop the Models and DAOs			- One week
+		2. Create the webpages				- 1 1/2 or 2 weeks
+			2.1 Create any html, css and javascript file
+			(if there is going to be any, not sure yet about styling)
+		3. Create and test connection with database	- One week
+
+Team members
+Tasks:		Alvaro Soto - Everything.
+
+---------------------------------------------------------------------------------------------
+
+CHANGE:
+
+Project idea:   a Website to keep track of projects. 
+                Will include the type of project.
+
+Tasks:          1. Add Login
+                2. Create Tables
+                3. Create Pages
+                4. Style the Pages
+
+Team Member Tasks: Alvaro Soto - Everything.
+                
+
