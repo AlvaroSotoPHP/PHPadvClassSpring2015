@@ -1,3 +1,4 @@
+<?php include('Style.html'); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -5,10 +6,12 @@
         <title></title>
     </head>
     <body>
-        
-        <a href="emailtype">Email Type</a>
-        <a href="email">Email</a>
-        <a href="signup">Sign Up</a>
-        <a href="login">Login</a>
+        <div style="text-align: center;">
+            <?php 
+                var_dump($scope->util->isLoggedin());
+            ?>
+            <h1>Welcome to the Project Tracker!</h1>
+            <hr />
+        </div>
     </body>
 </html>

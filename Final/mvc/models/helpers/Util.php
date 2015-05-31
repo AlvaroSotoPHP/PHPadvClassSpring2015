@@ -55,12 +55,19 @@ class Util implements IService {
     
     //Method to check if user is logged in
     public function isLoggedin() {
-        return ( isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true );
+        return ( isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true ); //session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
     }
     
     //Method to set the loggin session
     public function setLoggedin($value) {
+        session_start();
+        session_regenerate_id(true);
         $_SESSION['loggedin'] = $value;
+    }
+    public function endSession()
+    {
+        $_SESSION['loggedin'] = false;
+        session_destroy();
     }
 }
 

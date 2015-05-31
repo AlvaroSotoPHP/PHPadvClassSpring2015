@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="left" style="background-color: aqua; height: 750px; width: 200px; float: left; text-align: center;">
+            <?php 
+            var_dump($scope->util->isLoggedin());
+            ?>
+            <a href="index" style="font-size: x-large;">Index</a>
+            <br />
+            <a href="signup" style="font-size: x-large;">Sign Up</a>
+            <br />
+            <a href="login" style="font-size: x-large;">Login</a>
+            <br />
+            <a href="emailtype" style="font-size: x-large;">Email Type</a>
+            <br />
+            <a href="email" style="font-size: x-large;">Email</a>
+        </div>
+    </body>
+</html>

@@ -1,3 +1,4 @@
+<?php include('Style.html'); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -6,13 +7,11 @@
     </head>
     <body>
         <?php
-              
-        if(!$scope->util->isLoggedin())
+              var_dump($scope->util->isLoggedin());
+        /*if(!$scope->util->isLoggedin())
             {
-            /*session_start();
-            session_regenerate_id(true);*/
-                $scope->util->redirect('signup');
-            }
+                $scope->util->redirect('login');
+            }*/
         
          if ( $scope->util->isPostRequest() ) {
              
@@ -35,16 +34,16 @@
             $emailTypeid = $scope->view['model']->getEmailtypeid();
         ?>
         
-        <h3>Add email</h3>
+        <h3>Add a Project</h3>
         <form action="#" method="post">
-            <label>Email:</label>            
+            <label>Project Name:</label>            
             <input type="text" name="email" value="<?php echo $email; ?>" placeholder="" />
             <br /><br />
             <label>Active:</label>
             <input type="number" max="1" min="0" name="active" value="<?php echo $active; ?>" />
             
             <br /><br />
-            <label>Email Type:</label>
+            <label>Project Type:</label>
             <select name="emailtypeid">
             <?php 
                 foreach ($scope->view['emailTypes'] as $value) {

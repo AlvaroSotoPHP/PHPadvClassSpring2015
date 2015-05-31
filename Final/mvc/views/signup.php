@@ -1,3 +1,4 @@
+<?php include('Style.html'); ?>
 <!DOCTYPE html>
 <html>
     <head>

@@ -1596,3 +1596,6 @@
 [556b4916b97e3]	[exception]	[05-31-2015 7:47pm]	Scope variable service not found or set.
 [556b496fc8ce9]	[exception]	[05-31-2015 7:48pm]	Scope variable service not found or set.
 [556b4977512ce]	[exception]	[05-31-2015 7:48pm]	Scope variable data not found or set.
+[556b59a9b36fb]	[exception]	[05-31-2015 8:57pm]	Controller for page "logout" failed
+[556b59ccdaf06]	[exception]	[05-31-2015 8:58pm]	Controller for page "logout" failed
+[556b59d2c2690]	[exception]	[05-31-2015 8:58pm]	Controller for page "logout" failed

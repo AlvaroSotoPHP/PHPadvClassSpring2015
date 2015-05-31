@@ -1,3 +1,4 @@
+<?php include('Style.html'); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,7 +24,7 @@
             $emailTypeid = $scope->view['model']->getEmailtypeid();
         ?>
         
-        <h3>Add email</h3>
+        <h3>Edit Project</h3>
         <form action="#" method="post">
             <label>Email:</label>            
             <input type="text" name="email" value="<?php echo $email; ?>" placeholder="" />

@@ -1,3 +1,4 @@
+<?php include('Style.html'); ?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -7,6 +8,8 @@
     <body>
         <?php
           
+            var_dump($scope->util->isLoggedin());
+        
             if ( $scope->util->isPostRequest() ) {
                 /*$db = new DB($dbConfig); 
                 $model = new LoginModel();
@@ -20,7 +23,7 @@
                 if ( $LoginDao->login($model) ) {
                     echo '<h2>Login Sucess</h2>';
                     $scope->util->setLoggedin(true);
-                    $scope->util->redirect('emailtype');
+                    $scope->util->redirect('index');
                 } else {
                     echo '<h2>Login Failed</h2>';
                 }
