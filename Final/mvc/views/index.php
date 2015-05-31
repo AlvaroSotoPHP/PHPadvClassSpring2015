@@ -7,11 +7,13 @@
     </head>
     <body>
         <div style="text-align: center;">
-            <?php 
-                var_dump($scope->util->isLoggedin());
-            ?>
             <h1>Welcome to the Project Tracker!</h1>
             <hr />
         </div>
+        
+       <form action="#" method="post">
+            <input type="hidden" name="action" value="logout" />
+            <input type="submit" value="Logout" style="float: right; bottom: 0px;"/> 
+        </form>
     </body>
 </html>

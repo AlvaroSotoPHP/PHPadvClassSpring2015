@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link rel="stylesheet" href="css/app.css">
     </head>
     <body>
         
@@ -12,9 +13,9 @@
         
         if ( isset($scope->view['updated']) ) {
             if( $scope->view['updated'] ) {        
-                 echo 'Project Updated';
+                 echo 'Project type Updated';
             } else {
-                 echo 'Project NOT Updated';
+                 echo 'Project type NOT Updated';
             }                 
         }
         
@@ -45,7 +46,7 @@
         } else {
             
             
-             echo '<table border="1" cellpadding="5" align="center"><tr><th>Project Type</th><th>Active</th><th></th><th></th></tr>';
+             echo '<table border="1" class="gridtable" cellpadding="5" align="center"><tr><th>Project Type</th><th>Active</th><th></th><th></th></tr>';
              foreach ($scope->view['ProjectTypes'] as $value) {
                 echo '<tr>';
                 echo '<td>', $value->getProjecttype(),'</td>';

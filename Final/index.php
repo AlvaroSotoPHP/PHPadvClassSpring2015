@@ -121,11 +121,15 @@ use Exception;
             }  
              
         }
-              
+        
+        //////////////////////////////////////////
+        //Startup page setup here
+        //////////////////////////////////////////
+        
         protected function getPage() {
             $page = filter_input(INPUT_GET, 'page');            
             if ( NULL === $page || $page === FALSE ) {
-                $page = 'index';
+                $page = 'login';
             }
             return $this->checkPage($page);
         }

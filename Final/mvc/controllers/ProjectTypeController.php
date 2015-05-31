@@ -38,7 +38,7 @@ class ProjecttypeController extends BaseController implements IController {
                 $this->data['model']->map($scope->util->getPostValues());
                 $this->data["errors"] = $this->service->validate($this->data['model']);
                 $this->data["saved"] = $this->service->create($this->data['model']);
-                var_dump($this->data["saved"]);
+                //var_dump($this->data["saved"]);
             }
             
             if ( $scope->util->getAction() == 'update'  ) {
@@ -56,6 +56,11 @@ class ProjecttypeController extends BaseController implements IController {
             
             if ( $scope->util->getAction() == 'delete' ) {                
                 $this->data["deleted"] = $this->service->delete($scope->util->getPostParam('projecttypeid'));
+            }
+            
+            if ( $scope->util->getAction() == 'logout' ) {
+                $scope->util->endSession();
+                $scope->util->redirect('login', array());
             }
                        
         }

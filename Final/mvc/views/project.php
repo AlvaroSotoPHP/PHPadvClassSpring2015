@@ -4,27 +4,23 @@
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link rel="stylesheet" href="css/app.css">
     </head>
     <body>
         <?php
-              var_dump($scope->util->isLoggedin());
-        /*if(!$scope->util->isLoggedin())
-            {
-                $scope->util->redirect('login');
-            }*/
         
          if ( $scope->util->isPostRequest() ) {
              
              if ( isset($scope->view['errors']) ) {
-                print_r($scope->view['errors']);
+                //print_r($scope->view['errors']);
              }
              
              if ( isset($scope->view['saved']) && $scope->view['saved'] ) {
-                  echo 'Project Added';
+                  //echo 'Project Added';
              }
              
              if ( isset($scope->view['deleted']) && $scope->view['deleted'] ) {
-                  echo 'Project deleted';
+                  //echo 'Project deleted';
              }
              
          }
@@ -74,7 +70,7 @@
           if ( count($scope->view['projects']) <= 0 ) {
                 echo '<p>No Data</p>';
             } else {
-                echo '<table border="1" cellpadding="5" align="center"><tr><th>Project</th><th>Project Type</th><th>Last updated</th><th>Logged</th><th>Active</th><th></th><th></th></tr>'; 
+                echo '<table border="1" class="gridtable" cellpadding="5" align="center"><tr><th>Project</th><th>Project Type</th><th>Last updated</th><th>Logged</th><th>Active</th><th></th><th></th></tr>'; 
                  foreach ($scope->view['projects'] as $value) {
                     echo '<tr><td>',$value->getProject(),'</td><td>',$value->getProjecttype(),'</td><td>',date("F j, Y g:i(s) a", strtotime($value->getLastupdated())),'</td><td>',date("F j, Y g:i(s) a", strtotime($value->getLogged())),'</td>';
                     echo  '<td>', ( $value->getActive() == 1 ? 'Yes' : 'No') ,'</td>';

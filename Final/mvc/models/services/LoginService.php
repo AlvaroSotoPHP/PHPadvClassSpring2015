@@ -37,6 +37,10 @@ class LoginService implements IService {
      function setDAO(IDAO $DAO) {
          $this->DAO = $DAO;
      }
+     
+     public function login($model) {
+        return $this->getDAO()->login($model);
+    }
 
     public function __construct( IDAO $SignupDAO, IService $validator,IModel $model  ) {
         $this->setDAO($SignupDAO);

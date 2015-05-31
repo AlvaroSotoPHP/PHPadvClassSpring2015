@@ -26,6 +26,13 @@ class LoginController extends BaseController implements IController {
                 $this->data['model']->map($scope->util->getPostValues());
                 $this->data["errors"] = $this->service->validate($this->data['model']);
                 $this->data["saved"] = $this->service->create($this->data['model']);
+                //$this->data["login"] = $this->service->login($this->data['model']);
+                
+                /*if($this->data["login"])
+                {
+                    var_dump($this->data["login"]);
+                    session_regenerate_id(TRUE);
+                }*/
             }
                        
         }

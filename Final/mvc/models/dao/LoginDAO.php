@@ -82,27 +82,7 @@ class LoginDAO extends BaseDAO implements IDAO {
         $stmt->closeCursor();
          return $values;
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+      
     
     
     

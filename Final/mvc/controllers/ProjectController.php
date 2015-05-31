@@ -50,6 +50,11 @@ class ProjectController extends BaseController implements IController {
                  $viewPage .= 'edit';
             }
             
+            if ( $scope->util->getAction() == 'logout' ) {
+                $scope->util->endSession();
+                $scope->util->redirect('login', array());
+            }
+            
             
         }
         

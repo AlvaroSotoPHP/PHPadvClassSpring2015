@@ -26,6 +26,11 @@ class IndexController extends BaseController implements IController {
 
     public function execute(IService $scope) {                  
         
+        if ( $scope->util->getAction() == 'logout' ) {
+                $scope->util->endSession();
+                $scope->util->redirect('login', array());
+            }
+        
         $this->data["cool"] = 'testing';
         $scope->view = $this->data;
         return $this->view('index',$scope);

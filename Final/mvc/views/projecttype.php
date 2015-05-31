@@ -9,6 +9,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link rel="stylesheet" href="css/app.css">
     </head>
     <body>
         
@@ -23,11 +24,11 @@ and open the template in the editor.
              }
              
              if ( isset($scope->view['saved']) && $scope->view['saved'] ) {
-                  echo 'Project Added';
+                  echo 'Project type Added';
              }
              
              if ( isset($scope->view['deleted']) && $scope->view['deleted'] ) {
-                  echo 'Project deleted';
+                  echo 'Project type deleted';
              }
              
          }
@@ -57,7 +58,7 @@ and open the template in the editor.
         } else {
             
             
-             echo '<table border="1" cellpadding="5" align="center"><tr><th>Project Type</th><th>Active</th><th></th><th></th></tr>';
+             echo '<table border="1" class="gridtable" cellpadding="5" align="center"><tr><th>Project Type</th><th>Active</th><th></th><th></th></tr>';
              foreach ($scope->view['ProjectTypes'] as $value) {
                 echo '<tr>';
                 echo '<td>', $value->getProjecttype(),'</td>';
