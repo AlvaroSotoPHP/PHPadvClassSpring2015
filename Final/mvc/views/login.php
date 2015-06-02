@@ -19,7 +19,9 @@
                 if ( $LoginDao->login($model) ) {
                     echo '<h2>Login Sucess</h2>';
                     $scope->util->setLoggedin(true);
-                    $scope->util->redirect('index');
+                    //$scope->util->redirect('index');
+                    //var_dump(session_id());
+                    
                 } else {
                     echo '<h2>Login Failed</h2>';
                 }

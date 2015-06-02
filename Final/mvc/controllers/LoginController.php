@@ -29,11 +29,11 @@ class LoginController extends BaseController implements IController {
                 //$this->data["login"] = $this->service->login($this->data['model']);
                 
                 
-                if ($this->service->getDAO()->login($this->data['model']))
+                /*if ($this->service->getDAO()->login($this->data['model']))
                 {
                     //session_regenerate_id(TRUE);
                     $this->$scope->util->isLoggedin();
-                }
+                }*/
             }
                        
         }

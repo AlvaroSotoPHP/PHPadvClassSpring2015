@@ -8,6 +8,10 @@
     <body>
         <div style="text-align: center;">
             <h1>Welcome to the Project Tracker!</h1>
+            <?php
+            /*if (!$scope->util->isLoggedin())
+                $scope->util->redirect('login');*/
+            ?>
             <hr />
         </div>
        <form action="#" method="post">

@@ -41,3 +41,4 @@
 [556b80932a390]	[exception]	[05-31-2015 11:43pm]	SQLSTATE[HY000] [1049] Unknown database 'phpadvclassspring2015'
 [556b80932fd93]	[exception]	[05-31-2015 11:43pm]	SQLSTATE[HY000] [1049] Unknown database 'phpadvclassspring2015'
 [556b80933b1af]	[exception]	[05-31-2015 11:43pm]	SQLSTATE[HY000] [1049] Unknown database 'phpadvclassspring2015'
+[556e35d8aa0e2]	[exception]	[06-03-2015 1:01am]	Controller for page "lindex" failed
