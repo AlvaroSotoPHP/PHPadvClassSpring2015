@@ -27,7 +27,7 @@
         ?>
         
         <h1>Login</h1>
-        <form action="#" method="POST">
+        <form action="login" method="POST">
             <table style="left: 210px; position: absolute;">
                 <tbody>
                     <tr>
@@ -37,7 +37,7 @@
                         <td>Password :</td><td><input type="password" name="password" value="" /> <br /></td> 
                     </tr>
                     <tr>
-                        <td><input type="submit" value="Signup" /></td>
+                        <td><input type="submit" value="Login" /></td>
                     </tr>
                 </tbody>
             </table>

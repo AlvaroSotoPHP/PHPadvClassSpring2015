@@ -22,17 +22,18 @@ class LoginController extends BaseController implements IController {
         
         if ( $scope->util->isPostRequest() ) {
             
-            if ( $scope->util->getAction() == 'create' ) {
+            if ( $scope->util->getAction() == 'login' ) {
                 $this->data['model']->map($scope->util->getPostValues());
                 $this->data["errors"] = $this->service->validate($this->data['model']);
                 $this->data["saved"] = $this->service->create($this->data['model']);
                 //$this->data["login"] = $this->service->login($this->data['model']);
                 
-                /*if($this->data["login"])
+                
+                if ($this->service->getDAO()->login($this->data['model']))
                 {
-                    var_dump($this->data["login"]);
-                    session_regenerate_id(TRUE);
-                }*/
+                    //session_regenerate_id(TRUE);
+                    $this->$scope->util->isLoggedin();
+                }
             }
                        
         }

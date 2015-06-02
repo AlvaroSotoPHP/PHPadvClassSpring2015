@@ -64,6 +64,7 @@ class Util implements IService {
         session_regenerate_id(true);
         $_SESSION['loggedin'] = $value;
     }
+    //Mehotd to end the session
     public function endSession()
     {
         $_SESSION['loggedin'] = false;
